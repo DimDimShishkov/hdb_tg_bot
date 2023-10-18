@@ -9,6 +9,8 @@ node_modules
 # Optional npm cache directory
 .npm
 .env
+utils/hooks.js
+utils/sqlBase.js
 
 # Optional REPL history
 .DS_Store
