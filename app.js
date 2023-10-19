@@ -3,8 +3,6 @@ import express from "express";
 import { Telegraf } from "telegraf";
 import axios from "axios";
 import { getAuthMenu, getMainMenu } from "./utils/keyboards.js";
-import { handleAuth } from "./middlewares/auth.js";
-import sqlite from "sqlite-sync";
 import { handleCreateDataBase, handleSearchUserInDB } from "./utils/sqlBase.js";
 import { contactDataWizard } from "./middlewares/scenes.js";
 import { Scenes, session } from "telegraf";

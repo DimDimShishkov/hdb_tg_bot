@@ -1,5 +1,10 @@
 import dotenv from "dotenv";
 import axios from "axios";
+import * as https from "https";
+
+const httpsAgent = new https.Agent({
+  rejectUnauthorized: false,
+});
 
 import {
   handleEncodeStringToBase64,
@@ -16,24 +21,19 @@ const handleReturn = (res) => {
   return Promise.reject(res.status);
 };
 
-export const handleAuth = (v) => {
-  console.log(`${URL_LINK}auth`);
-  const res = v.split(":");
+export const handleAuth = (login, password) => {
   return fetch(`${URL_LINK}auth`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: handleEncodeAuthToBase64(v),
+      Authorization: handleEncodeAuthToBase64(login, password),
     },
     body: JSON.stringify({
-      Login: res[0],
-      Password: handleEncodeStringToBase64(res[1]),
+      Login: login,
+      Password: handleEncodeStringToBase64(password),
     }),
-    // }).then((res) => handleReturn(res));
-  })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+  }).then((res) => handleReturn(res));
 };
 
 // module.exports = (req, res, next) => {
